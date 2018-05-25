@@ -36,3 +36,72 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+const cardHtml = document.getElementsByClassName('card');
+const moves = document.getElementsByClassName('moves');
+
+let numOfMoves = 0;
+
+const flipCard = function(item) {
+  item.classList.toggle('open');
+  item.classList.toggle('show');
+}
+
+const isMatch = function(list) {
+  // sees if first two items have the same text
+  if (list[0].children[0].className == list[1].children[0].className){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+let selectedCards = [];
+let twoPicked = false;
+
+const clickMe = function() {
+  // resets flipped cards if two have been chosen
+  if (twoPicked){
+    for (let i = 0; i < selectedCards.length; i++){
+        selectedCards[i].classList.remove('show');
+        selectedCards[i].classList.remove('open');
+
+        twoPicked = false;
+      }
+      selectedCards = [];
+
+  }
+  // checks to see if card has been selected
+  if (this.classList.contains('show')){
+    return;
+  } else {
+    selectedCards.push(this);
+    flipCard(this);
+  }
+
+  // if there are more than one card selected, it checks if they are a match. Then resets
+  if (selectedCards.length > 1) {
+
+    let match = false;
+    if (isMatch(selectedCards)) {
+      match = true;
+    }
+
+      for (let i = 0; i < selectedCards.length; i++){
+        if (match) {
+        selectedCards[i].classList.add('match');
+      }
+      }
+
+    twoPicked = true;
+    numOfMoves ++;
+    moves[0].innerHTML = numOfMoves;
+  }
+}
+
+// event listeners
+for (let i = 0; i < cardHtml.length; i++) {
+  cardHtml[i].addEventListener('click', clickMe);
+}
+
+// Reset the board
