@@ -1,8 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+ const deck = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+const testDeck = {diamond: "diamond", paper-plane: "paper-plane-o"};
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -24,6 +24,16 @@ function shuffle(array) {
 
     return array;
 }
+
+// Shuffles the list of cards
+let deckShuffled = shuffle(deck);
+
+// Builts html of the deck
+
+
+const cardHtml = `This is a ${test}.`;
+
+//alert(`ewwwww ${card}`);
 
 
 /*
