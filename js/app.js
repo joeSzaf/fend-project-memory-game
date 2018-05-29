@@ -1,8 +1,14 @@
+const cardHtml = document.getElementsByClassName('card');
+const moves = document.getElementsByClassName('moves');
+const restart = document.getElementsByClassName('restart');
+
 /*
  * Create a list that holds all of your cards
  */
- const deck = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
-const testDeck = {diamond: "diamond", paper-plane: "paper-plane-o"};
+ const deck = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+
+let matches = 0;
+const matchesTot = deck.length / 2; // number of pairs
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -25,15 +31,17 @@ function shuffle(array) {
     return array;
 }
 
-// Shuffles the list of cards
-let deckShuffled = shuffle(deck);
+// Sets the different tiles of the
+const dealCards = function() {
+  let deckShuffled = deck.slice();
+  deckShuffled = shuffle(deckShuffled);
 
-// Builts html of the deck
+  for (let i = 0; i < cardHtml.length; i++) {
+    cardHtml[i].children[0].classList.add('fa-' + deckShuffled[i]);
+  }
+}
 
-
-const cardHtml = `This is a ${test}.`;
-
-//alert(`ewwwww ${card}`);
+dealCards();
 
 
 /*
@@ -47,8 +55,7 @@ const cardHtml = `This is a ${test}.`;
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const cardHtml = document.getElementsByClassName('card');
-const moves = document.getElementsByClassName('moves');
+
 
 let numOfMoves = 0;
 
@@ -79,7 +86,6 @@ const clickMe = function() {
         twoPicked = false;
       }
       selectedCards = [];
-
   }
   // checks to see if card has been selected
   if (this.classList.contains('show')){
@@ -95,6 +101,8 @@ const clickMe = function() {
     let match = false;
     if (isMatch(selectedCards)) {
       match = true;
+      matches++;
+      console.log(matches);
     }
 
       for (let i = 0; i < selectedCards.length; i++){
@@ -107,11 +115,47 @@ const clickMe = function() {
     numOfMoves ++;
     moves[0].innerHTML = numOfMoves;
   }
+  if (matches == matchesTot) {
+    victoryScreen();
+  }
 }
 
-// event listeners
-for (let i = 0; i < cardHtml.length; i++) {
-  cardHtml[i].addEventListener('click', clickMe);
+// Resets all flipped classes on all cards
+const resetCard = function(card) {
+  card.className = 'card';
+  card.children[0].className = 'fa';
 }
 
 // Reset the board
+
+const reset = function() {
+  dealCards();
+  matches = 0;
+  numOfMoves = 0;
+  moves[0].innerHTML = numOfMoves;
+  for (let i = 0; i < cardHtml.length; i++) {
+    resetCard(cardHtml[i]);
+  }
+
+}
+
+// Displays victory message
+
+const victoryScreen = function() {
+  alert(`Congratulations! You matched all the tiles with just ${numOfMoves} moves! Click okay to play again!`);
+  reset();
+}
+
+// set all the symbols to visible - for testing shuffle ability
+/*
+for (let i = 0; i < cardHtml.length; i ++) {
+  cardHtml[i].classList.add('show');
+}
+*/
+
+// event listeners
+for (let i = 0; i < cardHtml.length; i++) {
+    cardHtml[i].addEventListener('click', clickMe);
+  }
+
+restart[0].addEventListener('click', reset);
