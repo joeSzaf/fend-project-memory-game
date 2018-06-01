@@ -9,12 +9,16 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+  <!--
+  <button id='testButton'>test</button>
+  -->
 
   <!-- Modal box to display final scot -->
-  <div id="scoreScreen" class="modal">
+  <div id="victoryScreen" class="modal">
     <div class="modal-content">
-      <span class='close'>Close</span>
-      <p>You won! Congrats!</p>
+      <h1>You won! Congrats!</h1>
+      <p>It took <span id='scoreMessage'>0</span> moves to complete in <span id='timeMessage'>0</span> seconds!</p>
+      <p>You earned a <span id='starMessage'></span> rating!</p>
       <button id='playAgainButton'>Play Again?</button>
     </div>
   </div>
@@ -25,13 +29,14 @@
         </header>
 
         <section class="score-panel">
-        	<ul class="stars">
+        	Rating: <ul class="stars">
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	Moves: <span class="moves">0</span>
+        	  |   Moves: <span class="moves">0</span>
+            |   Time: <span id="secondsCounter">0</span> sec
 
             <div class="restart">
         		<i class="fa fa-repeat"></i>
@@ -40,52 +45,52 @@
 
         <ul class="deck">
             <li class="card">
-                <i class="fa fa-diamond"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-anchor"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bolt"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-cube"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-anchor"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-leaf"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bicycle"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-diamond"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bomb"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-leaf"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bomb"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bolt"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bicycle"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="fa"></i>
             </li>
             <li class="card">
-                <i class="fa fa-cube"></i>
+                <i class="fa"></i>
             </li>
         </ul>
     </div>

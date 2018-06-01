@@ -110,11 +110,16 @@ h1 {
 
 /* based off of code from W3 Schools https://www.w3schools.com/howto/howto_css_modals.asp*/
 .modal {
-  display: ndone;
+  display: none;
   position: fixed;
   z-index: 1;
-  background-color: rgb (0, 0, 0);
-  background-color: rgba (0, 0, 0, 0.8);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -122,5 +127,6 @@ h1 {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #444;
-  width: 60%;
+  width: 40%;
+  text-align: center;
 }
